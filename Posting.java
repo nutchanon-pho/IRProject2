@@ -5,6 +5,7 @@ public class Posting implements Serializable, Comparable<Posting>{
  private ArrayList<Integer> positionList;
  private int termFrequency;
  private static final long serialVersionUID = 42L;
+ //Constructor
  public Posting(int docIDInput , ArrayList<Integer> positionInput){
   docID = docIDInput;
   positionList = positionInput;
@@ -45,36 +46,6 @@ public class Posting implements Serializable, Comparable<Posting>{
   }
   s+= ">";
   return s;
- }
- public ArrayList<Integer> intersect(ArrayList<Integer> p2)
- {
-  ArrayList<Integer> p1 = positionList;
-  ArrayList<Integer> answer = new ArrayList<Integer>();
-  int p1Index = 0;
-  int p2Index = 0;
-  while(p1Index < p1.size() && p2Index < p2.size())
-  {
-   if(p1.get(p1Index) == p2.get(p2Index))
-   {
-    answer.add(p1.get(p1Index));
-   }
-   else
-   {
-    if(p1.get(p1Index) < p2.get(p2Index))
-    {
-     answer.add(p1.get(p1Index));
-     answer.add(p2.get(p2Index));
-    }
-    else
-    {
-     answer.add(p2.get(p2Index));
-     answer.add(p1.get(p1Index));
-    }
-   }
-   p1Index++;
-   p2Index++;
-  }
-  return answer;
  }
  
  public void add(int input)

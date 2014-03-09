@@ -9,30 +9,6 @@ public class PostingList implements Serializable{
  //private double inverseDocumentFrequency;
  private static final long serialVersionUID = 42L;
  /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
- public PostingList(String input, int n)
- {
-  totalNoOfDocuments = n;
-  list = new ArrayList<Posting>();
-  documentFrequency = charToInt(input.charAt(0));
-  input = input.substring(3); //trim the docFreq off
-  for(int j=0; j<documentFrequency; j++)
-  {
-   int docID = charToInt(input.charAt(2));
-   int termFrequency = charToInt(input.charAt(5));
-   ArrayList<Integer> positionList = new ArrayList<Integer>();
-   int index = 9; //first index of position list
-   for(int i=0; i<termFrequency; i++)
-   {
-    char position = input.charAt(index);
-    positionList.add(charToInt(position));
-    index = index + 3; //move to the next index
-   }
-   Posting newPosting = new Posting(docID, positionList);
-   list.add(newPosting);
-   int lastIndexOfPosting = input.indexOf('>');
-   input = input.substring(lastIndexOfPosting+1); //trim the processed posting off
-  }
- }
  
  //test constructor for IDFComparator
  public PostingList(int df, int N)
