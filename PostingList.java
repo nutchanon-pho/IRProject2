@@ -6,7 +6,6 @@ public class PostingList implements Serializable{
  private ArrayList<Posting> list;
  private int documentFrequency;
  private int totalNoOfDocuments;
- //private double inverseDocumentFrequency;
  private static final long serialVersionUID = 42L;
  /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
  
@@ -17,9 +16,10 @@ public class PostingList implements Serializable{
      totalNoOfDocuments = N;
  }
  
- public PostingList(){
+ public PostingList(int N){
   list = new ArrayList<Posting>();
   documentFrequency = list.size();
+  totalNoOfDocuments = N;
  }
  public void addPosting(Posting posting){
   if(!list.contains(posting)){
@@ -68,7 +68,8 @@ public class PostingList implements Serializable{
  
  public double getIDF()
  {
-     return Math.log10(totalNoOfDocuments/documentFrequency);
+     double df = (double)totalNoOfDocuments/(double)documentFrequency;
+     return Math.log10(df);
  }
  
 }

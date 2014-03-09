@@ -2,25 +2,22 @@ import java.io.Serializable;
 import java.util.ArrayList;
 public class Posting implements Serializable, Comparable<Posting>{
  private int docID;
- private ArrayList<Integer> positionList;
  private int termFrequency;
  private static final long serialVersionUID = 42L;
  //Constructor
- public Posting(int docIDInput , ArrayList<Integer> positionInput){
+ public Posting(int docIDInput, int tf){
   docID = docIDInput;
-  positionList = positionInput;
-  termFrequency = positionList.size(); 
+  termFrequency = tf; 
  }
  
  public int getDocID(){
   return docID;
  }
- public ArrayList<Integer> getPositionList(){
-  return positionList;
- }
+ 
  public int getTermFrequency(){
   return termFrequency;
  }
+ /*
  public boolean equals(Object obj){
   Posting other = (Posting) obj;
   if(docID == other.getDocID()){
@@ -35,24 +32,18 @@ public class Posting implements Serializable, Comparable<Posting>{
   else 
    return false;
   
- }
+ }*/
+ 
  public String toString(){
-  String s = docID +"," + termFrequency + "<";
-  for(int i = 0;i<termFrequency;i++)
-  {
-   s+=positionList.get(i);
-   if(i != termFrequency -1) 
-    s+=",";
-  }
-  s+= ">";
+  String s = docID +"," + termFrequency;
   return s;
  }
  
- public void add(int input)
+ /*public void add(int input)
  {
   positionList.add(input);
   termFrequency++;
- }
+ }*/
 
  @Override
  public int compareTo(Posting arg) {
