@@ -45,7 +45,7 @@ public class ScoreTester
         normV1 = Math.sqrt(normV1);
         normV2 = Math.sqrt(normV2);
         double normalizedScore = score / (normV1 * normV2);
-        return score;
+        return normalizedScore;
     }
 }
 
