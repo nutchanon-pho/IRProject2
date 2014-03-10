@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Posting implements Serializable, Comparable<Posting>{
  private int docID;
 <<<<<<< HEAD
+<<<<<<< HEAD
  private int termFrequency;
  private static final long serialVersionUID = 42L;
  //Constructor
@@ -10,6 +11,8 @@ public class Posting implements Serializable, Comparable<Posting>{
   docID = docIDInput;
   termFrequency = tf; 
 =======
+=======
+>>>>>>> parent of 4b90b73... version 0.1
  private ArrayList<Integer> positionList;
  private int termFrequency;
  private static final long serialVersionUID = 42L;
@@ -17,6 +20,9 @@ public class Posting implements Serializable, Comparable<Posting>{
   docID = docIDInput;
   positionList = positionInput;
   termFrequency = positionList.size(); 
+<<<<<<< HEAD
+>>>>>>> parent of 4b90b73... version 0.1
+=======
 >>>>>>> parent of 4b90b73... version 0.1
  }
  
@@ -24,18 +30,24 @@ public class Posting implements Serializable, Comparable<Posting>{
   return docID;
  }
 <<<<<<< HEAD
+<<<<<<< HEAD
  
  public int getTermFrequency(){
   return termFrequency;
  }
  /*
 =======
+=======
+>>>>>>> parent of 4b90b73... version 0.1
  public ArrayList<Integer> getPositionList(){
   return positionList;
  }
  public int getTermFrequency(){
   return termFrequency;
  }
+<<<<<<< HEAD
+>>>>>>> parent of 4b90b73... version 0.1
+=======
 >>>>>>> parent of 4b90b73... version 0.1
  public boolean equals(Object obj){
   Posting other = (Posting) obj;
@@ -52,6 +64,7 @@ public class Posting implements Serializable, Comparable<Posting>{
    return false;
   
 <<<<<<< HEAD
+<<<<<<< HEAD
  }*/
  
  public String toString(){
@@ -65,6 +78,8 @@ public class Posting implements Serializable, Comparable<Posting>{
   termFrequency++;
  }*/
 =======
+=======
+>>>>>>> parent of 4b90b73... version 0.1
  }
  public String toString(){
   String s = docID +"," + termFrequency + "<";
@@ -113,6 +128,9 @@ public class Posting implements Serializable, Comparable<Posting>{
   positionList.add(input);
   termFrequency++;
  }
+<<<<<<< HEAD
+>>>>>>> parent of 4b90b73... version 0.1
+=======
 >>>>>>> parent of 4b90b73... version 0.1
 
  @Override

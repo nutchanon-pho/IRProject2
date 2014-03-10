@@ -7,9 +7,12 @@ public class PostingList implements Serializable{
  private int documentFrequency;
  private int totalNoOfDocuments;
 <<<<<<< HEAD
+<<<<<<< HEAD
  private static final long serialVersionUID = 42L;
  /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
 =======
+=======
+>>>>>>> parent of 4b90b73... version 0.1
  //private double inverseDocumentFrequency;
  private static final long serialVersionUID = 42L;
  /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
@@ -37,6 +40,9 @@ public class PostingList implements Serializable{
    input = input.substring(lastIndexOfPosting+1); //trim the processed posting off
   }
  }
+<<<<<<< HEAD
+>>>>>>> parent of 4b90b73... version 0.1
+=======
 >>>>>>> parent of 4b90b73... version 0.1
  
  //test constructor for IDFComparator
@@ -47,10 +53,16 @@ public class PostingList implements Serializable{
  }
  
 <<<<<<< HEAD
+<<<<<<< HEAD
  public PostingList(int N){
   list = new ArrayList<Posting>();
   documentFrequency = list.size();
   totalNoOfDocuments = N;
+=======
+ public PostingList(){
+  list = new ArrayList<Posting>();
+  documentFrequency = list.size();
+>>>>>>> parent of 4b90b73... version 0.1
 =======
  public PostingList(){
   list = new ArrayList<Posting>();
@@ -105,8 +117,12 @@ public class PostingList implements Serializable{
  public double getIDF()
  {
 <<<<<<< HEAD
+<<<<<<< HEAD
      double df = (double)totalNoOfDocuments/(double)documentFrequency;
      return Math.log10(df);
+=======
+     return Math.log10(totalNoOfDocuments/documentFrequency);
+>>>>>>> parent of 4b90b73... version 0.1
 =======
      return Math.log10(totalNoOfDocuments/documentFrequency);
 >>>>>>> parent of 4b90b73... version 0.1
