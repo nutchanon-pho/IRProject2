@@ -6,44 +6,8 @@ public class PostingList implements Serializable{
  private ArrayList<Posting> list;
  private int documentFrequency;
  private int totalNoOfDocuments;
-<<<<<<< HEAD
-<<<<<<< HEAD
  private static final long serialVersionUID = 42L;
  /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
-=======
-=======
->>>>>>> parent of 4b90b73... version 0.1
- //private double inverseDocumentFrequency;
- private static final long serialVersionUID = 42L;
- /* 2: < 1, 2: <1, 5>; 2, 1: <1> > */
- public PostingList(String input, int n)
- {
-  totalNoOfDocuments = n;
-  list = new ArrayList<Posting>();
-  documentFrequency = charToInt(input.charAt(0));
-  input = input.substring(3); //trim the docFreq off
-  for(int j=0; j<documentFrequency; j++)
-  {
-   int docID = charToInt(input.charAt(2));
-   int termFrequency = charToInt(input.charAt(5));
-   ArrayList<Integer> positionList = new ArrayList<Integer>();
-   int index = 9; //first index of position list
-   for(int i=0; i<termFrequency; i++)
-   {
-    char position = input.charAt(index);
-    positionList.add(charToInt(position));
-    index = index + 3; //move to the next index
-   }
-   Posting newPosting = new Posting(docID, positionList);
-   list.add(newPosting);
-   int lastIndexOfPosting = input.indexOf('>');
-   input = input.substring(lastIndexOfPosting+1); //trim the processed posting off
-  }
- }
-<<<<<<< HEAD
->>>>>>> parent of 4b90b73... version 0.1
-=======
->>>>>>> parent of 4b90b73... version 0.1
  
  //test constructor for IDFComparator
  public PostingList(int df, int N)
@@ -52,22 +16,10 @@ public class PostingList implements Serializable{
      totalNoOfDocuments = N;
  }
  
-<<<<<<< HEAD
-<<<<<<< HEAD
  public PostingList(int N){
   list = new ArrayList<Posting>();
   documentFrequency = list.size();
   totalNoOfDocuments = N;
-=======
- public PostingList(){
-  list = new ArrayList<Posting>();
-  documentFrequency = list.size();
->>>>>>> parent of 4b90b73... version 0.1
-=======
- public PostingList(){
-  list = new ArrayList<Posting>();
-  documentFrequency = list.size();
->>>>>>> parent of 4b90b73... version 0.1
  }
  public void addPosting(Posting posting){
   if(!list.contains(posting)){
@@ -116,16 +68,8 @@ public class PostingList implements Serializable{
  
  public double getIDF()
  {
-<<<<<<< HEAD
-<<<<<<< HEAD
      double df = (double)totalNoOfDocuments/(double)documentFrequency;
      return Math.log10(df);
-=======
-     return Math.log10(totalNoOfDocuments/documentFrequency);
->>>>>>> parent of 4b90b73... version 0.1
-=======
-     return Math.log10(totalNoOfDocuments/documentFrequency);
->>>>>>> parent of 4b90b73... version 0.1
  }
  
 }
