@@ -72,4 +72,14 @@ public class PostingList implements Serializable{
      return Math.log10(df);
  }
  
+ public Posting getPostingWithDocID(int docID)
+ {
+     for(Posting p : list)
+     {
+         if(docID == p.getDocID())
+             return p;
+     }
+     return null;
+ }
+ 
 }
