@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.regex.*;
+import jdbm.helper.Tuple;
+import jdbm.helper.TupleBrowser;
+import java.util.Collections;
 
 public class FTSP{
     public static void main(String[] args)throws IOException
@@ -11,6 +14,7 @@ public class FTSP{
                 String indexName = args[1];
                 String folderName = args[2];
                 Index index = new Index(indexName);
+                index.reset(indexName);
                 File rootDir;
                 File[] accounts;
                 //Get folder from sibbling node
@@ -21,7 +25,7 @@ public class FTSP{
                 for(File f : accounts)
                 {
                     File sendFolder = new File(f.getAbsolutePath()+"/"+"sent");
-                    System.out.println(f.getName());
+                    //System.out.println(f.getName());
                     ArrayList<File> emails = getEmails(sendFolder);//account's sentItem
                     if(emails!=null){
                         for(int i = 0;i<emails.size();i++){
@@ -31,8 +35,19 @@ public class FTSP{
                         }
                     }
                 }
-                System.out.println(index);
-                //index.save();
+                int totalNoOfDocuments = docID - 1;
+                ArrayList<Tuple> list = new ArrayList<Tuple>();
+                TupleBrowser browser = index.getBrowser();
+                Tuple tuple = new Tuple();
+                while ( browser.getNext(tuple) ) {
+                    Tuple currentTuple = new Tuple(tuple.getKey(), tuple.getValue());
+                    list.add(currentTuple);
+                }
+                Collections.sort(list, new IDFComparator(totalNoOfDocuments));
+                eliminateStopWords(index, list, totalNoOfDocuments);
+                index.save();
+                System.out.println("Size of index before : " + list.size());
+                System.out.println("Size of index after : " + index.getSize());
                 return;
             }
             if(args[0].equalsIgnoreCase("search")){
@@ -120,5 +135,31 @@ public class FTSP{
             index.addIndex(contentTokenList, docID, docName,"content");
         }
         //System.out.print(index.toString());
+    }
+    
+    public static int find91stPercentilePosition(ArrayList<Tuple> list, int N)
+    {
+        int percentile91st = (int)((91.0/100.0)*list.size());
+        PostingList p = (PostingList)list.get(percentile91st).getValue();
+        double targetValue = p.getIDF(N);
+        for(int i = 0; i<list.size(); i++)
+        {
+            PostingList currentPostingList = (PostingList)list.get(i).getValue();
+            if(currentPostingList.getIDF(N) == targetValue)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public static void eliminateStopWords(Index index,ArrayList<Tuple> list, int N) throws IOException
+    {
+        int percentile91st = find91stPercentilePosition(list, N);
+        for(int i=percentile91st;i<list.size();i++)
+        {
+            String key = (String)list.get(i).getKey();
+            index.remove(key);
+        }
     }
 }

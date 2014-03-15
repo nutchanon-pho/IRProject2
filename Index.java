@@ -49,10 +49,10 @@ public class Index {
       return dictionary.size();
       
   }
-  public boolean reset() {
+  public boolean reset(String indexName) {
     try{
       dictionary = BTree.createInstance(recMan,new StringComparator());
-      recMan.setNamedObject("dictionary", dictionary.getRecid());
+      recMan.setNamedObject(indexName, dictionary.getRecid());
       //System.out.println("Successfully reset");
       return true;
     }
@@ -91,6 +91,17 @@ public class Index {
     return tf;
   }
   
+  public void remove(String key) throws IOException
+  {
+      PostingList existingPostingList = (PostingList)dictionary.find(key);
+      if(existingPostingList == null){
+          return;
+      }
+      else{
+          dictionary.remove(key);
+      }
+  }
+  
   public void insert(String key,Posting value,String type){
       try{
       
@@ -107,7 +118,6 @@ public class Index {
     }
     catch(IOException e){  
       e.printStackTrace();
-      
     }
   }
   
@@ -128,13 +138,17 @@ public class Index {
       browser = dictionary.browse();
       int i= 0;
       while ( browser.getNext(tuple) ) {
-          System.out.println(printTuple(tuple));
           s+=printTuple( tuple );
       }
     }catch(IOException e){
       e.printStackTrace();
     }
     return s;
+  }
+  
+  public TupleBrowser getBrowser() throws IOException
+  {
+      return dictionary.browse();
   }
   
   public void close(){
@@ -158,4 +172,5 @@ public class Index {
     }
     return buf.toString();
   }
+  
 }

@@ -9,10 +9,10 @@ public class IDFTester
         int N = 100;
         for(int i=0;i<N;i++)
         {
-            list.add(new PostingList((int)(1+Math.random()*10),N));
+            //list.add(new PostingList((int)(1+Math.random()*10),N));
         }
         
-        Collections.sort(list, new IDFComparator());
+        Collections.sort(list, new IDFComparator(N));
         
         /*for(PostingList p : list)
         {
